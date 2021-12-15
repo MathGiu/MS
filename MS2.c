@@ -14,7 +14,7 @@
 //Functions used in the simulation
 void IC(double *, double *); //User needs to write the initial condition
 void Product(double *,double *,double *); //This function computes products in the physical space
-void Flux(double *, double *, double *, double *); // This function computes the r.h.s. of the equations for u and v
+void R(double *, double *, double *, double *); // This function computes the r.h.s. of the equations for u and v
 
 
 #define T ((double) ) //User needs to insert the total time of the simulation
@@ -117,7 +117,7 @@ int main(void)
 	//Second order Runge-Kutta scheme
 	for(n=1;n<=N;n++)
 	{
-		Flux(u, v, fu1, fv1);
+		R(u, v, fu1, fv1);
 				
 		for(k=1;k<=m;k++)
         {
@@ -125,7 +125,7 @@ int main(void)
         	hv1[k]=v[k]+fv1[k]*dt;        		
 		}
 		
-		Flux(hu1, hv1, fu2, fv2);
+		R(hu1, hv1, fu2, fv2);
 		
 		for(k=1;k<=m;k++)
 		{
@@ -211,7 +211,7 @@ void Product(double *f, double *g, double *fxg)
 
 
 //This function computes the r.h.s. of the equations for u and v
-void Flux(double *U, double *V, double *ReactU, double *ReactV)
+void R(double *U, double *V, double *ReactU, double *ReactV)
 {
 	int i,j,k;
 	double *K, *Kp; //Kernel, in the Fourier and in the physical space, respectively
