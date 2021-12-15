@@ -76,10 +76,10 @@ int main(void)
 	up=dvector(1,m);
 	vp=dvector(1,m);
 		
-    hu1=dvector(1,m);
-    hv1=dvector(1,m);
-    hu2=dvector(1,m);
-    hv2=dvector(1,m);    
+    	hu1=dvector(1,m);
+    	hv1=dvector(1,m);
+    	hu2=dvector(1,m);
+    	hv2=dvector(1,m);    
 
 	fu1=dvector(1,m);
 	fv1=dvector(1,m);
@@ -177,8 +177,8 @@ void IC(double *UI, double *VI)
 	
 }
 
-//This function transform two input data from the Fourier space to the physical space,
-//computes their products and finally transforms the result from the physical space
+//This function transforms two input data from the Fourier space to the physical space,
+//then computes their products and finally transforms the result from the physical space
 //to the Fourier space
 void Product(double *f, double *g, double *fxg)
 {
