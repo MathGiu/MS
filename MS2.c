@@ -53,8 +53,8 @@ int main(void)
 	
 	double *u, *v; //Solution vectors in the Fourier space
 	double *up, *vp; //Solution vectors in the physical space
-	double *hu1,*hv1,*hu2,*hv2; //Vectors used for Runge-Kutta scheme
-	double *fu1,*fv1,*fu2,*fv2;	//Vectors used for Runge-Kutta scheme
+	double *hu1,*hv1,*hu2,*hv2; //Vectors used in Runge-Kutta scheme
+	double *fu1,*fv1,*fu2,*fv2;	//Vectors used in Runge-Kutta scheme
 	int n,i,k;
 
 	
@@ -89,7 +89,7 @@ int main(void)
 	//Set up the initial conditions
 	IC(up,vp);	
 
-	//Transform the data from the physical space to the Fourier space	
+	//Transform the initial data from the physical space to the Fourier space	
 	for(i=1;i<=m;i++)
 	{	
 		u[i]=up[i]*2/m;
@@ -338,8 +338,8 @@ void Flux(double *U, double *V, double *ReactU, double *ReactV)
 	//Write the r.h.s. of the equations for u and v
 	for(k=1;k<=m;k++)
 	{
-		ReactU[k]=D1*ddU[k]+gamma12*dudv_bar[k]+gamma11*dudu_bar[k];
-		ReactV[k]=D2*ddV[k]+gamma21*dvdu_bar[k]+gamma22*dvdv_bar[k];
+		ReactU[k]=D1*ddU[k]-gamma12*dudv_bar[k]-gamma11*dudu_bar[k];
+		ReactV[k]=D2*ddV[k]-gamma21*dvdu_bar[k]-gamma22*dvdv_bar[k];
 	}
 
 	
@@ -367,5 +367,4 @@ void Flux(double *U, double *V, double *ReactU, double *ReactV)
 
 
 	
-
 
